@@ -4,6 +4,7 @@ Changelog
 trunk (0.1dev)
 --------------
 
+- refactor adapter, use IBlogEntryFactory [hplocher]
 - add adapter to create a Blog Entry [hplocher]
   (title, body text, only atm)
 

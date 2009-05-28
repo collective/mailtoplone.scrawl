@@ -11,3 +11,11 @@
 		defined interface for creating a Blog Entry
     * tests/base.py (setup_product): 
 		fix test setup
+    * blogentryfactory.py (BlogEntryFactory): 
+		created, implements IBlogEntryFactory 
+    * adapter.py (ScrawlMailDropBox.drop): 
+	 	moved content creation to blogeventfactory, 
+		which will be used if no adapter providing 
+		IBlogEntryFactory is found
+
+vim: set ft=changelog ts=4 sw=4 expandtab :

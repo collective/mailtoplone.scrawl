@@ -26,18 +26,15 @@ import logging
 
 from zope import interface
 from zope import component
-from zope.event import notify
-
-from zope.app.container.interfaces import INameChooser
-from plone.i18n.normalizer.interfaces import IIDNormalizer
-
-from Acquisition import aq_base
 
 from mailtoplone.base.interfaces import IMailDropBox
 from mailtoplone.base.interfaces import IBodyFactory
-from mailtoplone.base.events import MailDroppedEvent
+
+from mailtoplone.scrawl.interfaces import IBlogEntryFactory
+from mailtoplone.scrawl.blogentryfactory import BlogEntryFactory
 
 info = logging.getLogger().info
+
 
 class ScrawlMailDropBox(object):
     """ adapts IScrawlMailDropBoxmarker to a IMailDropBox """
@@ -50,43 +47,25 @@ class ScrawlMailDropBox(object):
     def drop(self, mail):
         """ drop a mail into this mail box. The mail is
         a string with the complete email content """
-
         # get the body and matching content_type, charset
         bodyfactory = component.queryUtility(IBodyFactory)
         body, content_type, charset = bodyfactory(mail)
-        format = content_type
 
         mailobj = email.message_from_string(mail)
 
-        # Subject and description
+        # Subject
         for key in "Subject subject Betreff x-blog-title".split():
             subject = mailobj.get(key)
             if subject is not None:
                 break
-        description = mailobj.get("x-blog-description", "")
 
-        info( "ScrawlMailDropBox: new mail with subject '%s'" % subject )
+        info("ScrawlMailDropBox: new mail with subject '%s'" % subject)
+        factory = component.queryMultiAdapter((self.context, None),\
+                IBlogEntryFactory,\
+                default=BlogEntryFactory(self.context, None))
 
-        # XXX: the namechooer does a getattr('check_id'), which results in a python
-        #      script (!!) which is aquired. That script makes the name chooser not choose
-        #      correctly, thus we strip acquisition. Bah.
-        normalizer = component.getUtility(IIDNormalizer)
-        chooser = INameChooser(self.context)
-        id = chooser.chooseName(normalizer.normalize(subject), aq_base(self.context))
+        factory.create(subject, body)
 
-        self.context.invokeFactory(
-                'Blog Entry',
-                id=id,
-                title=subject,
-                format=format,
-                content_type=content_type,
-                description=description,
-                text=body
-                )
 
-        blog_entry = getattr(self.context, id)
-        blog_entry.processForm()
-        notify(MailDroppedEvent(blog_entry, self.context))
 
 # vim: set ft=python ts=4 sw=4 expandtab :
-
