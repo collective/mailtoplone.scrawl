@@ -1,0 +1,8 @@
+Changelog
+=========
+
+trunk (0.1dev)
+--------------
+
+- Initial release
+
