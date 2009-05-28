@@ -14,12 +14,10 @@ from Testing import ZopeTestCase as ztc
 from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import onsetup
 
-# When ZopeTestCase configures Zope, it will *not* auto-load products
-# in Products/. Instead, we have to use a statement such as:
-#   ztc.installProduct('SimpleAttachment')
-# This does *not* apply to products in eggs and Python packages (i.e.
-# not in the Products.*) namespace. For that, see below.
-# All of Plone's products are already set up by PloneTestCase.
+import Products.Scrawl
+import mailtoplone.base
+import mailtoplone.contentrules
+import mailtoplone.scrawl
 
 @onsetup
 def setup_product():
@@ -35,29 +33,21 @@ def setup_product():
     # This can of course use <include /> to include other packages.
 
     fiveconfigure.debug_mode = True
-    import mailtoplone.scrawl
+    zcml.load_config('configure.zcml', mailtoplone.base)
+    zcml.load_config('configure.zcml', mailtoplone.contentrules)
     zcml.load_config('configure.zcml', mailtoplone.scrawl)
     fiveconfigure.debug_mode = False
 
-    # We need to tell the testing framework that these products
-    # should be available. This can't happen until after we have loaded
-    # the ZCML. Thus, we do it here. Note the use of installPackage()
-    # instead of installProduct().
-    # This is *only* necessary for packages outside the Products.*
-    # namespace which are also declared as Zope 2 products, using
-    # <five:registerPackage /> in ZCML.
-
-    # We may also need to load dependencies, e.g.:
-    #   ztc.installPackage('borg.localrole')
-
-    ztc.installPackage('mailtoplone.scrawl')
+    ztc.installProduct('Scrawl')
+    ztc.installPackage('mailtoplone.base')
+    ztc.installPackage('mailtoplone.contentrules')
 
 # The order here is important: We first call the (deferred) function
 # which installs the products we need for this product. Then, we let
 # PloneTestCase set up this product on installation.
 
 setup_product()
-ptc.setupPloneSite(products=['mailtoplone.scrawl'])
+ptc.setupPloneSite(products=['Scrawl', 'mailtoplone.base', 'mailtoplone.contentrules'])
 
 class TestCase(ptc.PloneTestCase):
     """We use this base class for all the tests in this package. If

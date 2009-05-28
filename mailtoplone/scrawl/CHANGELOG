@@ -1,6 +1,6 @@
 2009-05-28  Hans-Peter Locher <hans-peter.locher@inquant.de>
 
-    * adapter.py: added,
+    * adapter.py: added
 		bases on mailtoplone.base.adapters.blog but creates
 		a Blog Entry instead of a News item
     * interfaces.py: 
@@ -9,3 +9,5 @@
 		register adapter IScrawlMailDropBoxMarker -> IMailDropBox
     * interfaces.py (IBlogEntryFactory): 
 		defined interface for creating a Blog Entry
+    * tests/base.py (setup_product): 
+		fix test setup
