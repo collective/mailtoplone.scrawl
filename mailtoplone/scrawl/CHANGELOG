@@ -7,3 +7,5 @@
 		added IScrawlMailDropBoxMarker markerinterface
     * configure.zcml: 
 		register adapter IScrawlMailDropBoxMarker -> IMailDropBox
+    * interfaces.py (IBlogEntryFactory): 
+		defined interface for creating a Blog Entry
