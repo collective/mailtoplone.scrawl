@@ -4,6 +4,12 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="mailtoplone.scrawl">
 
-  <!-- Include the sub-packages that use their own configure.zcml files. -->
+  <!-- Adapter IScrawlMailDropBoxMarker -> IMailDropBox -->
+
+   <adapter
+      provides="mailtoplone.base.interfaces.IMailDropBox"
+      for=".interfaces.IScrawlMailDropBoxMarker"
+      factory=".adapter.ScrawlMailDropBox"
+      />
 
 </configure>

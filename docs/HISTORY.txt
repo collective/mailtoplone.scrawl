@@ -4,5 +4,6 @@ Changelog
 trunk (0.1dev)
 --------------
 
-- Initial release
+- add adapter to create a Blog Entry [hplocher]
+  (title, body text, only atm)
 

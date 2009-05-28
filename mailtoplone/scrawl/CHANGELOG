@@ -1,3 +1,9 @@
 2009-05-28  Hans-Peter Locher <hans-peter.locher@inquant.de>
 
-    * started
+    * adapter.py: added,
+		bases on mailtoplone.base.adapters.blog but creates
+		a Blog Entry instead of a News item
+    * interfaces.py: 
+		added IScrawlMailDropBoxMarker markerinterface
+    * configure.zcml: 
+		register adapter IScrawlMailDropBoxMarker -> IMailDropBox
