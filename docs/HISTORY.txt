@@ -4,6 +4,7 @@ Changelog
 trunk (0.1dev)
 --------------
 
+- call add_category('email') [hplocher]
 - get all attachments from mail, and call add_file
   for each [hplocher]
   call add_file for each, before calling create_

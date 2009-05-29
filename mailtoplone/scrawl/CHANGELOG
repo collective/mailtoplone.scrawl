@@ -14,6 +14,8 @@
     * adapter.py (ScrawlMailDropBox.drop): 
         use attachments to get attachments from file and
         call add_file, for each attachment
+    * adapter.py (ScrawlMailDropBox.drop): 
+        use add_category('email')
 
 
 2009-05-28  Hans-Peter Locher <hans-peter.locher@inquant.de>

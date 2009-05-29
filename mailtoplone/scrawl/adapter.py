@@ -35,6 +35,7 @@ from mailtoplone.base.browser.emailview import EmailView
 from mailtoplone.scrawl.interfaces import IBlogEntryFactory
 from mailtoplone.scrawl.blogentryfactory import BlogEntryFactory
 from mailtoplone.scrawl.utilities import attachments
+from mailtoplone.scrawl.config import CATEGORY
 
 info = logging.getLogger("mailtoplone.scrawl").info
 
@@ -71,14 +72,13 @@ class ScrawlMailDropBox(object):
         subject = email_view.decodeheader(subject)
 
 
-        #get (file) attachments from mail
         for attachment in attachments(mail):
             entry_factory.add_file(
                     attachment['data'],
                     attachment['file_name'],
                     attachment['mime_type']
                     )
-
+        entry_factory.add_category(CATEGORY)
         entry_factory.create(subject, body)
 
 
