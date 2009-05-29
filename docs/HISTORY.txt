@@ -4,7 +4,7 @@ Changelog
 0.1 (2009-05-29)
 ----------------
 
-- call add_category('email') [hplocher]
+- call add_category [hplocher]
 - get all attachments from mail, and call add_file
   for each [hplocher]
   call add_file for each, before calling create_
