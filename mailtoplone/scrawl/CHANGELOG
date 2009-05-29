@@ -2,8 +2,19 @@
 
     * adapter.py (ScrawlMailDropBox.drop): 
         use mailtoplone.base.browser.emailview.EmailView.decodeheader
-
         to decode the subject before using it as title
+    * utilities.py: 
+        added def attachments(mail),
+        """return a generator which yields dicts like
+            { "data": "some text, may also be binary for other files",
+            "file_name": "muha.txt"
+            "mime_type": "text/plain",
+            }
+         """
+    * adapter.py (ScrawlMailDropBox.drop): 
+        use attachments to get attachments from file and
+        call add_file, for each attachment
+
 
 2009-05-28  Hans-Peter Locher <hans-peter.locher@inquant.de>
 

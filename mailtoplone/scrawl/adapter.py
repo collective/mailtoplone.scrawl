@@ -34,8 +34,9 @@ from mailtoplone.base.browser.emailview import EmailView
 
 from mailtoplone.scrawl.interfaces import IBlogEntryFactory
 from mailtoplone.scrawl.blogentryfactory import BlogEntryFactory
+from mailtoplone.scrawl.utilities import attachments
 
-info = logging.getLogger().info
+info = logging.getLogger("mailtoplone.scrawl").info
 
 
 class ScrawlMailDropBox(object):
@@ -51,7 +52,9 @@ class ScrawlMailDropBox(object):
         a string with the complete email content """
         body_factory = component.queryUtility(IBodyFactory)
         email_view = EmailView(self.context, None)
-
+        entry_factory = component.queryMultiAdapter((self.context, None),\
+                IBlogEntryFactory,\
+                default=BlogEntryFactory(self.context, None))
 
         # get the body and matching content_type, charset
         body, content_type, charset = body_factory(mail)
@@ -67,11 +70,16 @@ class ScrawlMailDropBox(object):
         #decode subject
         subject = email_view.decodeheader(subject)
 
-        factory = component.queryMultiAdapter((self.context, None),\
-                IBlogEntryFactory,\
-                default=BlogEntryFactory(self.context, None))
 
-        factory.create(subject, body)
+        #get (file) attachments from mail
+        for attachment in attachments(mail):
+            entry_factory.add_file(
+                    attachment['data'],
+                    attachment['file_name'],
+                    attachment['mime_type']
+                    )
+
+        entry_factory.create(subject, body)
 
 
 

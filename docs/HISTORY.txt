@@ -4,6 +4,9 @@ Changelog
 trunk (0.1dev)
 --------------
 
+- get all attachments from mail, and call add_file
+  for each [hplocher]
+  call add_file for each, before calling create_
 - decode subject header, used as title [hplocher]
 - refactor adapter, use IBlogEntryFactory [hplocher]
 - add adapter to create a Blog Entry [hplocher]
