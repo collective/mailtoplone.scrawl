@@ -36,7 +36,7 @@ tests_require=['zope.testing']
 
 setup(name='mailtoplone.scrawl',
       version=version,
-      description="",
+      description="addon for mailtoplone creating Scrawl Blog Entries",
       long_description=long_description,
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
@@ -48,7 +48,7 @@ setup(name='mailtoplone.scrawl',
       keywords='',
       author='Hans-Peter Locher',
       author_email='hans-peter.locher@inquant.de',
-      url='http://svn.plone.org/svn/plone/plone.example',
+      url='http://svn.plone.org/svn/collective/mailtoplone/mailtoplone.scrawl',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['mailtoplone', ],
