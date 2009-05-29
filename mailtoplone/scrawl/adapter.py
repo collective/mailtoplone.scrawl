@@ -30,6 +30,8 @@ from zope import component
 from mailtoplone.base.interfaces import IMailDropBox
 from mailtoplone.base.interfaces import IBodyFactory
 
+from mailtoplone.base.browser.emailview import EmailView
+
 from mailtoplone.scrawl.interfaces import IBlogEntryFactory
 from mailtoplone.scrawl.blogentryfactory import BlogEntryFactory
 
@@ -47,9 +49,12 @@ class ScrawlMailDropBox(object):
     def drop(self, mail):
         """ drop a mail into this mail box. The mail is
         a string with the complete email content """
+        body_factory = component.queryUtility(IBodyFactory)
+        email_view = EmailView(self.context, None)
+
+
         # get the body and matching content_type, charset
-        bodyfactory = component.queryUtility(IBodyFactory)
-        body, content_type, charset = bodyfactory(mail)
+        body, content_type, charset = body_factory(mail)
 
         mailobj = email.message_from_string(mail)
 
@@ -59,7 +64,9 @@ class ScrawlMailDropBox(object):
             if subject is not None:
                 break
 
-        info("ScrawlMailDropBox: new mail with subject '%s'" % subject)
+        #decode subject
+        subject = email_view.decodeheader(subject)
+
         factory = component.queryMultiAdapter((self.context, None),\
                 IBlogEntryFactory,\
                 default=BlogEntryFactory(self.context, None))

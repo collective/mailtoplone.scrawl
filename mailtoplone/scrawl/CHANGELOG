@@ -1,3 +1,10 @@
+2009-05-29  Hans-Peter Locher <hans-peter.locher@inquant.de>
+
+    * adapter.py (ScrawlMailDropBox.drop): 
+        use mailtoplone.base.browser.emailview.EmailView.decodeheader
+
+        to decode the subject before using it as title
+
 2009-05-28  Hans-Peter Locher <hans-peter.locher@inquant.de>
 
     * adapter.py: added
