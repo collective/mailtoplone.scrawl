@@ -1,6 +1,14 @@
+Dependencies
+
+mailtoplone.base:
+
+    - http://pypi.python.org/pypi/mailtoplone.base
+
 Scrawl:
 
     - http://pypi.python.org/pypi/Products.Scrawl
+
+Example buildout
 
 buildout:
 

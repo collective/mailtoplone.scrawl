@@ -7,4 +7,5 @@ ADD_PERMISSIONS = {
     # -*- extra stuff goes here -*-
 }
 
-CATEGORY = 'email'
+# don't ask why...
+CATEGORY = 'SMS'
