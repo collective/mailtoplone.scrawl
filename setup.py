@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version = '0.1dev'
+version = '0.1'
 
 long_description = (
     read('README.txt')
@@ -48,7 +48,7 @@ setup(name='mailtoplone.scrawl',
       keywords='',
       author='Hans-Peter Locher',
       author_email='hans-peter.locher@inquant.de',
-      url='http://svn.plone.org/svn/collective/mailtoplone/mailtoplone.scrawl',
+      url='http://svn.plone.org/svn/collective/mailtoplone/mailtoplone.scrawl/tags/0.1',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['mailtoplone', ],
