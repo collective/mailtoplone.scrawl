@@ -53,8 +53,8 @@ class ScrawlMailDropBox(object):
         a string with the complete email content """
         body_factory = component.queryUtility(IBodyFactory)
         email_view = EmailView(self.context, None)
-        entry_factory = component.queryMultiAdapter((self.context, None),\
-                IBlogEntryFactory,\
+        entry_factory = component.queryMultiAdapter((
+                self.context, self.context.REQUEST), IBlogEntryFactory,\
                 default=BlogEntryFactory(self.context, None))
 
         # get the body and matching content_type, charset

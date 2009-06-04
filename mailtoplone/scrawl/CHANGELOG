@@ -1,3 +1,7 @@
+2009-06-04  ramonski <ramon.bartl@inquant.de>
+
+    * adapter.py (ScrawlMailDropBox.drop): added context.REQUEST to queryMultiAdapter
+
 2009-05-29  Hans-Peter Locher <hans-peter.locher@inquant.de>
 
     * adapter.py (ScrawlMailDropBox.drop): 
@@ -21,21 +25,21 @@
 2009-05-28  Hans-Peter Locher <hans-peter.locher@inquant.de>
 
     * adapter.py: added
-		bases on mailtoplone.base.adapters.blog but creates
-		a Blog Entry instead of a News item
+        bases on mailtoplone.base.adapters.blog but creates
+        a Blog Entry instead of a News item
     * interfaces.py: 
-		added IScrawlMailDropBoxMarker markerinterface
+        added IScrawlMailDropBoxMarker markerinterface
     * configure.zcml: 
-		register adapter IScrawlMailDropBoxMarker -> IMailDropBox
+        register adapter IScrawlMailDropBoxMarker -> IMailDropBox
     * interfaces.py (IBlogEntryFactory): 
-		defined interface for creating a Blog Entry
+        defined interface for creating a Blog Entry
     * tests/base.py (setup_product): 
-		fix test setup
+        fix test setup
     * blogentryfactory.py (BlogEntryFactory): 
-		created, implements IBlogEntryFactory 
+        created, implements IBlogEntryFactory 
     * adapter.py (ScrawlMailDropBox.drop): 
-	 	moved content creation to blogeventfactory, 
-		which will be used if no adapter providing 
-		IBlogEntryFactory is found
+        moved content creation to blogeventfactory, 
+        which will be used if no adapter providing 
+        IBlogEntryFactory is found
 
 vim: set ft=changelog ts=4 sw=4 expandtab :
