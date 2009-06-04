@@ -1,2 +1,3 @@
-recursive-include mailtoplone docs *
+global-include .py .txt .GPL .cfg .zcml CHANGELOG
+recursive-include mailtoplone *
 global-exclude *pyc
