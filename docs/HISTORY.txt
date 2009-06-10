@@ -12,7 +12,7 @@ trunk (0.2dev)
 - call add_category [hplocher]
 - get all attachments from mail, and call add_file
   for each [hplocher]
-  call add_file for each, before calling create_
+  call add_file for each, before calling create
 - decode subject header, used as title [hplocher]
 - refactor adapter, use IBlogEntryFactory [hplocher]
 - add adapter to create a Blog Entry [hplocher]

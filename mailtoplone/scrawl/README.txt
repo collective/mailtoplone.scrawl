@@ -30,6 +30,7 @@ context, we use that to call drop::
 
 As result, we wexpect a single blog entry, with the title, id set 
 according to the email's subject::
+
     >>> blog_entries.objectIds()
     ['my-first-blog-entry']
     >>> blog_entry = blog_entries.listFolderContents()[0]
