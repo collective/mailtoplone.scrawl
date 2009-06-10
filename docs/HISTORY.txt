@@ -4,7 +4,7 @@ Changelog
 trunk (0.2dev)
 --------------
 
-- unreleased
+- added context.REQUEST to queryMultiAdapter [ramonski]
 
 0.1 (2009-05-29)
 ----------------
