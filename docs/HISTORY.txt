@@ -4,7 +4,7 @@ Changelog
 trunk (0.3dev)
 --------------
 
-- no changes yet
+- changed category to **sent by email** [hplocher]
 
 0.2 (2009-05-10)
 ----------------

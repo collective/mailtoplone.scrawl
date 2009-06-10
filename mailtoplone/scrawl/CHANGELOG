@@ -1,3 +1,7 @@
+2009-06-10  Hans-Peter Locher <hans-peter.locher@inquant.de>
+
+    * config.py: changed CATEGORY to 'sent by email'
+
 2009-06-04  ramonski <ramon.bartl@inquant.de>
 
     * adapter.py (ScrawlMailDropBox.drop): added context.REQUEST to queryMultiAdapter
